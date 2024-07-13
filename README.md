@@ -1,1 +1,6 @@
-Please note that 2nd,3rd and last commits are on the product branch
+
+The screen record of the task
+
+https://github.com/user-attachments/assets/6fd3a015-0eb4-43e4-846c-54143c08c8e5
+
+

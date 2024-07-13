@@ -71,4 +71,16 @@ dependencies {
     implementation("com.squareup.retrofit2:retrofit:2.11.0")
     //RetrofitConverter
     implementation("com.squareup.retrofit2:converter-gson:2.11.0")
+    //layout
+    implementation("com.google.accompanist:accompanist-flowlayout:0.26.1-alpha")
+    //URL -> Img
+    implementation("com.github.bumptech.glide:compose:1.0.0-beta01")
+
+    implementation ("androidx.lifecycle:lifecycle-viewmodel-compose:2.8.3")
+        implementation ("com.github.bumptech.glide:glide:4.13.0")
+
+
+
+
+
 }
