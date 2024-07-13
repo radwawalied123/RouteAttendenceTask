@@ -1,4 +1,5 @@
-package com.example.routeattendencetask.ui.theme.utils
+package com.example.routeattendencetask.ui.theme.utils.Cards
+
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.border
@@ -6,10 +7,8 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
@@ -28,6 +27,7 @@ import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+
 import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi
 import com.bumptech.glide.integration.compose.GlideImage
 import com.example.routeattendencetask.R
@@ -35,26 +35,24 @@ import com.example.routeattendencetask.api.ProductsItem
 import com.example.routeattendencetask.ui.theme.borderBlue
 import com.example.routeattendencetask.ui.theme.lightBlue
 import com.example.routeattendencetask.ui.theme.royalBlue
+import androidx.lifecycle.viewmodel.compose.viewModel
 
 @OptIn(ExperimentalGlideComposeApi::class)
 @Composable
-fun ProductCard(product: ProductsItem?, modifier: Modifier = Modifier) {
+fun ProductCard(modifier: Modifier,product: ProductsItem?, viewModel: ProductCardViewModel = viewModel()) {
+    viewModel.product = product
     val customFontFamily = FontFamily(Font(R.font.poppins_regular))
-    val discount = product?.discountPercentage.toString()
-    val price = product?.price.toString()
-    val rating = product?.rating.toString()
-    val imageUrl = product?.images?.firstOrNull() ?: ""
 
     Card(
-        modifier = modifier
-            .fillMaxWidth()
+        modifier = Modifier
+            .fillMaxWidth().padding(4.dp)
             .border(2.dp, color = borderBlue, shape = RoundedCornerShape(16.dp)),
         colors = CardDefaults.cardColors(containerColor = Color.Transparent)
     ) {
         Column {
             Box(modifier = Modifier.fillMaxWidth()) {
                 GlideImage(
-                    model = imageUrl,
+                    model = viewModel.getProductImageUrl(),
                     contentDescription = "Product image",
                     modifier = Modifier.fillMaxWidth(),
                     contentScale = ContentScale.Fit
@@ -67,7 +65,7 @@ fun ProductCard(product: ProductsItem?, modifier: Modifier = Modifier) {
             }
 
             Text(
-                text = product?.title ?: "",
+                text = viewModel.getProductTitle(),
                 color = royalBlue,
                 maxLines = 1,
                 overflow = TextOverflow.Ellipsis,
@@ -75,7 +73,7 @@ fun ProductCard(product: ProductsItem?, modifier: Modifier = Modifier) {
                 fontFamily = customFontFamily
             )
             Text(
-                text = product?.description ?: "",
+                text = viewModel.getProductDescription(),
                 color = royalBlue,
                 maxLines = 1,
                 overflow = TextOverflow.Ellipsis,
@@ -90,7 +88,7 @@ fun ProductCard(product: ProductsItem?, modifier: Modifier = Modifier) {
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Text(
-                    text = "EGP $discount",
+                    text = "EGP ${viewModel.getDiscount()}",
                     maxLines = 1,
                     style = TextStyle(
                         fontSize = 14.sp,
@@ -100,7 +98,7 @@ fun ProductCard(product: ProductsItem?, modifier: Modifier = Modifier) {
                     color = royalBlue
                 )
                 Text(
-                    text = "$price EGP",
+                    text = "${viewModel.getPrice()} EGP",
                     maxLines = 1,
                     style = TextStyle(
                         fontSize = 11.sp,
@@ -129,7 +127,7 @@ fun ProductCard(product: ProductsItem?, modifier: Modifier = Modifier) {
                     color = royalBlue
                 )
                 Text(
-                    text = " ($rating)",
+                    text = " (${viewModel.getRating()})",
                     style = TextStyle(
                         fontSize = 14.sp,
                         fontWeight = FontWeight.Normal,
@@ -147,8 +145,8 @@ fun ProductCard(product: ProductsItem?, modifier: Modifier = Modifier) {
             Image(
                 painter = painterResource(id = R.drawable.plus_ic),
                 contentDescription = "Plus Icon",
-                modifier=Modifier.align(Alignment.End).padding(4.dp))
-        }
+                modifier = Modifier.align(Alignment.End).padding(4.dp)
+            )
         }
     }
-
+}

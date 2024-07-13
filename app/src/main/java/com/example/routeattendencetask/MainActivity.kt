@@ -8,7 +8,6 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
@@ -18,7 +17,8 @@ import com.example.routeattendencetask.api.ApiManager
 import com.example.routeattendencetask.api.ListResponse
 import com.example.routeattendencetask.api.ProductsItem
 import com.example.routeattendencetask.ui.theme.RouteAttendenceTaskTheme
-import com.example.routeattendencetask.ui.theme.utils.ProductCard
+import com.example.routeattendencetask.ui.theme.utils.Cards.ProductCard
+import com.example.routeattendencetask.ui.theme.utils.ProductList
 import com.example.routeattendencetask.ui.theme.utils.SearchBar
 import retrofit2.Call
 import retrofit2.Callback
@@ -63,7 +63,7 @@ fun ProductScreen() {
             modifier = Modifier.padding(16.dp)
         )
         SearchBar()
-        ProductList(productList = productsList)
+        com.example.routeattendencetask.ui.theme.utils.ProductList(productList = productsList)
     }
 }
 
@@ -73,15 +73,4 @@ fun ProductScreenPreview() {
     ProductScreen()
 }
 
-@Composable
-fun ProductList(productList: List<ProductsItem?>) {
-    LazyVerticalGrid(
-        columns = GridCells.Fixed(2),
-        contentPadding = PaddingValues(8.dp),
-        modifier = Modifier.fillMaxSize()
-    ) {
-        items(productList) { product ->
-            ProductCard(product = product, modifier = Modifier.padding(8.dp))
-        }
-    }
-}
+
