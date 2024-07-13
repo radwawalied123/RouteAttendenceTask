@@ -71,4 +71,8 @@ dependencies {
     implementation("com.squareup.retrofit2:retrofit:2.11.0")
     //RetrofitConverter
     implementation("com.squareup.retrofit2:converter-gson:2.11.0")
+    //layout
+    implementation("com.google.accompanist:accompanist-flowlayout:0.26.1-alpha")
+
+
 }
