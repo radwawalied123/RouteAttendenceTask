@@ -73,6 +73,14 @@ dependencies {
     implementation("com.squareup.retrofit2:converter-gson:2.11.0")
     //layout
     implementation("com.google.accompanist:accompanist-flowlayout:0.26.1-alpha")
+    //URL -> Img
+    implementation("com.github.bumptech.glide:compose:1.0.0-beta01")
+
+   
+        implementation ("com.github.bumptech.glide:glide:4.13.0")
+
+
+
 
 
 }

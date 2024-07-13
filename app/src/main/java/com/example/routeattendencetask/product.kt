@@ -7,6 +7,6 @@ data class ProductList(
     val rating: String? = null,
     val price: String? = null,
     val discountPercentage: String? = null,
-    val image: Int? = null
+
 
 )
